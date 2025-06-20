@@ -70,9 +70,9 @@ def main():
     
 if __name__ == '__main__':
     import multiprocessing
-    multiprocessing.freeze_support()  # Only needed when freezing with pyinstaller
+    multiprocessing.freeze_support() 
     main()
     
     
 import os
-num_workers = os.cpu_count()  # Total logical cores
+num_workers = os.cpu_count()  
