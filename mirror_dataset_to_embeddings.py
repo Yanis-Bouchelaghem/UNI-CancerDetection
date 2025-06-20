@@ -5,8 +5,8 @@ from timm.data import resolve_data_config
 from timm.data.transforms_factory import create_transform
 from tqdm import tqdm
 
-SRC  = Path(r"..\\dataset\\final_test_dataset\\tissus_saint")
-DST  = Path(r"..\\dataset\\final_test_embeddings\\tissus_saint")
+SRC  = Path(r"..\\dataset\\riadh_train_patches\tissu_sain")
+DST  = Path(r"..\\dataset\\riadh_train_embeddings\\tissu_sain")
 DST.mkdir(parents=True, exist_ok=True)
 
 model = timm.create_model("hf-hub:MahmoodLab/uni",

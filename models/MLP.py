@@ -9,14 +9,19 @@ from torchmetrics.functional.classification import (
 
 LR           = 1e-3
 EMBED_DIM    = 1024
-
+HIDDEN_DIM = 256
+DROPOUT = 0.3
 class MLP(LightningModule):
     def __init__(self):
         super().__init__()
         self.net = nn.Sequential(
-            nn.Linear(EMBED_DIM, 512),
+            nn.Linear(EMBED_DIM, HIDDEN_DIM),
             nn.ReLU(),
-            nn.Linear(512, 2)
+            nn.Dropout(DROPOUT),
+            nn.Linear(HIDDEN_DIM, HIDDEN_DIM // 2),
+            nn.ReLU(),
+            nn.Dropout(DROPOUT),
+            nn.Linear(HIDDEN_DIM // 2, 2)
         )
         self.loss = nn.CrossEntropyLoss()
 

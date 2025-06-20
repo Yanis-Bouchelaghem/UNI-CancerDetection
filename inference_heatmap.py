@@ -9,8 +9,8 @@ from WSICancerPatchExtractor import WSICancerPatchExtractor
 # ---------------------------------------------------------------------- #
 # CONSTANTS
 # ---------------------------------------------------------------------- #
-CHECKPOINT = "model_checkpoints/simple-mlp-best-f1-epoch=13-val_f1=0.8996.ckpt"
-PATCH_SIZE = 128
+CHECKPOINT = "logs\\riadh_dataset_50_epochs\\checkpoints\\mlp-best-f1-epoch=48-val_f1=0.9497.ckpt"
+PATCH_SIZE = 224
 DEVICE     = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # ---------------------------------------------------------------------- #
@@ -52,6 +52,7 @@ def cancer_prob(patch_np: np.ndarray) -> float:
 # ---------------------------------------------------------------------- #
 # HEATMAP GENERATION
 # ---------------------------------------------------------------------- #
+
 def heatmap_annotation(extractor: WSICancerPatchExtractor, annotation, out_dir: Path):
     region, bounds = extractor.extract_annotation_region(annotation, padding=2048)
     h, w = region.shape[:2]
@@ -109,7 +110,7 @@ def run(wsi_dir, xml_dir, output_dir):
 # ENTRY
 # ---------------------------------------------------------------------- #
 if __name__ == "__main__":
-    WSI_DIR = "..\\dataset\\Camelyon dataset"
+    WSI_DIR = "..\\dataset\\Camelyon dataset\\test"
     XML_DIR = "..\\dataset\\Camelyon dataset\\annot"
     OUT_DIR = "..\\results\\heatmaps"
     run(WSI_DIR, XML_DIR, OUT_DIR)
